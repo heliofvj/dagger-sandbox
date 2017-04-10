@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+    id 'nebula.provided-base' version '3.0.3'
+}
+
+group 'dagger-sandbox'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.google.dagger:dagger:2.10'
+    provided 'com.google.dagger:dagger-compiler:2.10'
+}
