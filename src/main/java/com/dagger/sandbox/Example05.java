@@ -12,7 +12,7 @@ import javax.inject.Inject;
  * Then the module can provide the data to the component.
  * All modules with a non default constructor needs to be instantiated manually.
  */
-class Example5 extends BaseExample implements Dependency1Interface {
+class Example05 extends BaseExample implements Dependency1Interface {
 
     @Inject
     Dependency1Interface dependency1Interface;
@@ -21,7 +21,7 @@ class Example5 extends BaseExample implements Dependency1Interface {
 
     @Override
     public void run() {
-        SimpleComponent simpleComponent = DaggerExample5_SimpleComponent.builder()
+        SimpleComponent simpleComponent = DaggerExample05_SimpleComponent.builder()
                 .simpleModule(new SimpleModule(this))
                 .build();
 
@@ -38,7 +38,7 @@ class Example5 extends BaseExample implements Dependency1Interface {
 
     @Component(modules = SimpleModule.class)
     public interface SimpleComponent {
-        void inject(Example5 example);
+        void inject(Example05 example);
 
         Dependency1Interface dependency1Interface();
 

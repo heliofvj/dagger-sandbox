@@ -7,7 +7,7 @@ import javax.inject.Inject;
 /**
  * No need for a module when all dependencies can be provided automatically!
  */
-class Example3 extends BaseExample {
+class Example03 extends BaseExample {
 
     @Inject
     Dependency1 dependency1;
@@ -16,7 +16,7 @@ class Example3 extends BaseExample {
 
     @Override
     public void run() {
-        SimpleComponent simpleComponent = DaggerExample3_SimpleComponent.create();
+        SimpleComponent simpleComponent = DaggerExample03_SimpleComponent.create();
 
         simpleComponent.inject(this);
         Dependency1 localDependency1 = simpleComponent.dependency1();
@@ -31,7 +31,7 @@ class Example3 extends BaseExample {
 
     @Component
     public interface SimpleComponent {
-        void inject(Example3 example);
+        void inject(Example03 example);
 
         Dependency1 dependency1();
 

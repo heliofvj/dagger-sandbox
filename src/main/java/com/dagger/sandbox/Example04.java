@@ -7,7 +7,7 @@ import javax.inject.Inject;
 /**
  * Dependencies instantiated by dagger have their fields with @Inject automatically injected.
  */
-class Example4 extends BaseExample {
+class Example04 extends BaseExample {
 
     @Inject
     Dependency1 dependency1;
@@ -16,7 +16,7 @@ class Example4 extends BaseExample {
 
     @Override
     public void run() {
-        SimpleComponent simpleComponent = DaggerExample4_SimpleComponent.create();
+        SimpleComponent simpleComponent = DaggerExample04_SimpleComponent.create();
 
         simpleComponent.inject(this);
         Dependency1 localDependency1 = simpleComponent.dependency1();
@@ -33,7 +33,7 @@ class Example4 extends BaseExample {
 
     @Component
     public interface SimpleComponent {
-        void inject(Example4 example);
+        void inject(Example04 example);
 
         Dependency1 dependency1();
 

@@ -5,16 +5,13 @@ import dagger.Module;
 import dagger.Provides;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 /**
- * Singleton.
- * This annotation is a binding scope.
- * In a scoped component, the bindings (@Provides methods, @Inject constructors) annotated with the component scope
- * will only be called once.
- * The component will always return the same instance for scoped dependencies.
+ * Most basic example: a component and a module.
+ * The module provides dependencies to the module.
+ * The component makes these dependencies available through its interface.
  */
-class Example7 extends BaseExample {
+class Example01 extends BaseExample {
 
     @Inject
     Dependency1 dependency1;
@@ -23,7 +20,7 @@ class Example7 extends BaseExample {
 
     @Override
     public void run() {
-        SimpleComponent simpleComponent = DaggerExample7_SimpleComponent.create();
+        SimpleComponent simpleComponent = DaggerExample01_SimpleComponent.create();
 
         simpleComponent.inject(this);
         Dependency1 localDependency1 = simpleComponent.dependency1();
@@ -36,10 +33,9 @@ class Example7 extends BaseExample {
         printField(dependency2);
     }
 
-    @Singleton
     @Component(modules = SimpleModule.class)
     public interface SimpleComponent {
-        void inject(Example7 example);
+        void inject(Example01 example);
 
         Dependency1 dependency1();
 
@@ -49,18 +45,20 @@ class Example7 extends BaseExample {
     @Module
     static class SimpleModule {
         @Provides
-        @Singleton
         static Dependency1 provideDependency1() {
             return new Dependency1();
+        }
+
+        @Provides
+        static Dependency2 provideDependency2(Dependency1 dependency1) {
+            return new Dependency2(dependency1);
         }
     }
 
     static class Dependency1 {
     }
 
-    @Singleton
     static class Dependency2 {
-        @Inject
         Dependency2(Dependency1 dependency1) {
         }
     }

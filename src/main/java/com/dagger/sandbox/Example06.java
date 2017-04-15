@@ -9,7 +9,7 @@ import javax.inject.Inject;
  * You can add @BindsInstance methods to component builders to allow instances to be directly injected in the components.
  * This should be preferred to writing a @Module with constructor arguments and immediately providing those values.
  */
-class Example6 extends BaseExample implements Dependency1Interface {
+class Example06 extends BaseExample implements Dependency1Interface {
 
     @Inject
     Dependency1Interface dependency1Interface;
@@ -18,7 +18,7 @@ class Example6 extends BaseExample implements Dependency1Interface {
 
     @Override
     public void run() {
-        SimpleComponent simpleComponent = DaggerExample6_SimpleComponent.builder()
+        SimpleComponent simpleComponent = DaggerExample06_SimpleComponent.builder()
                 .dependency1(this)
                 .build();
 
@@ -35,7 +35,7 @@ class Example6 extends BaseExample implements Dependency1Interface {
 
     @Component
     public interface SimpleComponent {
-        void inject(Example6 example);
+        void inject(Example06 example);
 
         Dependency1Interface dependency1();
 

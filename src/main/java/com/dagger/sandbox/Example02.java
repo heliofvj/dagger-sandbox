@@ -9,7 +9,7 @@ import javax.inject.Inject;
 /**
  * Dependencies can be automatically constructed made available using @Inject on constructors.
  */
-class Example2 extends BaseExample {
+class Example02 extends BaseExample {
 
     @Inject
     Dependency1 dependency1;
@@ -18,7 +18,7 @@ class Example2 extends BaseExample {
 
     @Override
     public void run() {
-        SimpleComponent simpleComponent = DaggerExample2_SimpleComponent.create();
+        SimpleComponent simpleComponent = DaggerExample02_SimpleComponent.create();
 
         simpleComponent.inject(this);
         Dependency1 localDependency1 = simpleComponent.dependency1();
@@ -33,7 +33,7 @@ class Example2 extends BaseExample {
 
     @Component(modules = SimpleModule.class)
     public interface SimpleComponent {
-        void inject(Example2 example);
+        void inject(Example02 example);
 
         Dependency1 dependency1();
 

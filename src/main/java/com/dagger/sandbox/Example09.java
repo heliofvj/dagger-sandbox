@@ -6,17 +6,21 @@ import dagger.Provides;
 import dagger.Subcomponent;
 
 import javax.inject.Inject;
+import javax.inject.Scope;
 import javax.inject.Singleton;
 
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
 /**
- * Sub-components.
- * These components inherit and extend the object graph of a parent component.
- * Annotate sub-components with the @Subcomponent annotation.
- * You add modules to it just like any component.
- * To build and attach the sub-component to a parent component, you declare it explicitly in the component interface.
- * Every time you use the interface you'll get a new component, so keep the instance after you call it.
+ * Sub-scopes.
+ * Of course you can use scoped bindings in sub-components!
+ * Root components generally use the @Singleton scope.
+ * For sub-components you need to create new scope annotations.
  */
-class Example8 extends BaseExample {
+class Example09 extends BaseExample {
 
     @Inject
     Dependency1 dependency1;
@@ -25,7 +29,7 @@ class Example8 extends BaseExample {
 
     @Override
     public void run() {
-        SimpleComponent simpleComponent = DaggerExample8_SimpleComponent.create();
+        SimpleComponent simpleComponent = DaggerExample09_SimpleComponent.create();
         SimpleSubComponent simpleSubComponent = simpleComponent.newSimpleSubComponent();
 
         simpleSubComponent.inject(this);
@@ -54,9 +58,16 @@ class Example8 extends BaseExample {
         }
     }
 
+    @Documented
+    @Retention(RUNTIME)
+    @Scope
+    @interface MySubScope {
+    }
+
+    @MySubScope
     @Subcomponent(modules = {SimpleModuleB.class})
     public interface SimpleSubComponent {
-        void inject(Example8 example);
+        void inject(Example09 example);
 
         Dependency1 dependency1();
 
@@ -66,6 +77,7 @@ class Example8 extends BaseExample {
     @Module
     static class SimpleModuleB {
         @Provides
+        @MySubScope
         static Dependency2 provideDependency2(Dependency1 dependency1) {
             return new Dependency2(dependency1);
         }

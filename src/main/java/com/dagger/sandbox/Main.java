@@ -3,15 +3,15 @@ package com.dagger.sandbox;
 public class Main {
 
     public static void main(String[] args) {
-        new Example1().run();
-        new Example2().run();
-        new Example3().run();
-        new Example4().run();
-        new Example5().run();
-        new Example6().run();
-        new Example7().run();
-        new Example8().run();
-        new Example9().run();
+        new Example01().run();
+        new Example02().run();
+        new Example03().run();
+        new Example04().run();
+        new Example05().run();
+        new Example06().run();
+        new Example07().run();
+        new Example08().run();
+        new Example09().run();
         new Example10().run();
         new Example11().run();
         new Example12().run();
