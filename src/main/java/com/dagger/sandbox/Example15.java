@@ -16,7 +16,7 @@ import java.lang.annotation.Retention;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * Scopes with @Releasable.
+ * Releasable references.
  * Create a scope and annotate it with @CanReleaseReferences.
  * Then you can inject a ReleasableReferenceManager object and call releaseStrongReferences() on it.
  * That will make the component hold a WeakReference to the object instead of a strong reference.
