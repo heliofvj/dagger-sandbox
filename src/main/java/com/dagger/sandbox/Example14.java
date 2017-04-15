@@ -1,11 +1,7 @@
 package com.dagger.sandbox;
 
-import dagger.Component;
-import dagger.Module;
-import dagger.Provides;
-import dagger.Reusable;
+import dagger.*;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
@@ -16,51 +12,67 @@ import javax.inject.Singleton;
  */
 class Example14 extends BaseExample {
 
-    @Inject
-    Dependency1 dependency1;
-    @Inject
-    Dependency2 dependency2;
-
     @Override
     public void run() {
         SimpleComponent simpleComponent = DaggerExample14_SimpleComponent.create();
-
-        simpleComponent.inject(this);
-        Dependency1 localDependency1 = simpleComponent.dependency1();
-        Dependency2 localDependency2 = simpleComponent.dependency2();
+        SimpleSubComponentA simpleSubComponentA = simpleComponent.newSimpleSubComponentA();
+        SimpleSubComponentB simpleSubComponentB = simpleComponent.newSimpleSubComponentB();
 
         printSelf();
-        printLocal(localDependency1);
-        printField(dependency1);
-        printLocal(localDependency2);
-        printField(dependency2);
+        for (int i = 0; i < 2; i++) {
+            Dependency1 localDependency1A = simpleSubComponentA.dependency1();
+            Dependency2 localDependency2A = simpleSubComponentA.dependency2();
+            Dependency1 localDependency1B = simpleSubComponentB.dependency1();
+            Dependency2 localDependency2B = simpleSubComponentB.dependency2();
+            printLocal(localDependency1A, "SubComponentA");
+            printLocal(localDependency2A, "SubComponentA");
+            printLocal(localDependency1B, "SubComponentB");
+            printLocal(localDependency2B, "SubComponentB");
+            printDivider();
+        }
     }
 
     @Singleton
     @Component(modules = SimpleModule.class)
     public interface SimpleComponent {
-        void inject(Example14 example);
+        SimpleSubComponentA newSimpleSubComponentA();
 
-        Dependency1 dependency1();
-
-        Dependency2 dependency2();
+        SimpleSubComponentB newSimpleSubComponentB();
     }
 
     @Module
     static class SimpleModule {
         @Provides
-        @Reusable
+        @Singleton
         static Dependency1 provideDependency1() {
             return new Dependency1();
         }
+
+        @Provides
+        @Reusable
+        static Dependency2 provideDependency2(Dependency1 dependency1) {
+            return new Dependency2(dependency1);
+        }
+    }
+
+    @Subcomponent
+    public interface SimpleSubComponentA {
+        Dependency1 dependency1();
+
+        Dependency2 dependency2();
+    }
+
+    @Subcomponent
+    public interface SimpleSubComponentB {
+        Dependency1 dependency1();
+
+        Dependency2 dependency2();
     }
 
     static class Dependency1 {
     }
 
-    @Reusable
     static class Dependency2 {
-        @Inject
         Dependency2(Dependency1 dependency1) {
         }
     }
