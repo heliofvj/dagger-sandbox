@@ -1,6 +1,8 @@
 package com.dagger.sandbox;
 
 import com.dagger.sandbox.kotlin.KExample01;
+import com.dagger.sandbox.kotlin.KExample02;
+import com.dagger.sandbox.kotlin.KExample03;
 
 public class Main {
 
@@ -30,5 +32,7 @@ public class Main {
         new Example23().run();
 
         new KExample01().run();
+        new KExample02().run();
+        new KExample03().run();
     }
 }
