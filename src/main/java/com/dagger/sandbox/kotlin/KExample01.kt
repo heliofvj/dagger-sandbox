@@ -7,7 +7,9 @@ import dagger.Provides
 import javax.inject.Inject
 
 /**
- * Created by daividsilverio on 27/05/17.
+ * Most basic example: a component and a module.
+ * The module provides dependencies to the module.
+ * The component makes these dependencies available through its interface.
  */
 class KExample01 : BaseExample() {
 

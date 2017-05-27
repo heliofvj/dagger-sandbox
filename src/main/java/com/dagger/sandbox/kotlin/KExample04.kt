@@ -5,9 +5,9 @@ import dagger.Component
 import javax.inject.Inject
 
 /**
- * No need for a module when all dependencies can be provided automatically!
+ * Dependencies instantiated by dagger have their fields with @Inject automatically injected.
  */
-class KExample03 : BaseExample() {
+class KExample04 : BaseExample() {
 
     @Inject
     lateinit var dependency1: Dependency1
@@ -16,7 +16,7 @@ class KExample03 : BaseExample() {
     lateinit var dependency2: Dependency2
 
     override fun run() {
-        val simpleComponent = DaggerKExample03_SimpleComponent.create()
+        val simpleComponent = DaggerKExample04_SimpleComponent.create()
 
         simpleComponent.inject(this)
         val localDependency1 = simpleComponent.dependency1()
@@ -27,18 +27,25 @@ class KExample03 : BaseExample() {
         printField(dependency1)
         printLocal(localDependency2)
         printField(dependency2)
+        printLocal(localDependency1.dependency3)
+        printField(dependency1.dependency3)
     }
 
     @Component
     interface SimpleComponent {
-        fun inject(ex3: KExample03)
+        fun inject(ex4: KExample04)
 
         fun dependency1(): Dependency1
 
         fun dependency2(): Dependency2
     }
 
-    class Dependency1 @Inject constructor()
+    class Dependency1 @Inject constructor() {
+        @Inject
+        lateinit var dependency3: Dependency3
+    }
 
     class Dependency2 @Inject constructor(dp1: Dependency1)
+
+    class Dependency3 @Inject constructor()
 }

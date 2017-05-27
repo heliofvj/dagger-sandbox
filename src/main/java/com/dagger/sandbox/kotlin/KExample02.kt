@@ -7,7 +7,7 @@ import dagger.Provides
 import javax.inject.Inject
 
 /**
- * Created by daividsilverio on 27/05/17.
+ * Dependencies can be automatically constructed made available using @Inject on constructors.
  */
 class KExample02 : BaseExample() {
 
