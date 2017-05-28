@@ -45,5 +45,7 @@ public class Main {
         new KExample14().run();
         new KExample15().run();
         new KExample16().run();
+        new KExample17().run();
+        new KExample18().run();
     }
 }
