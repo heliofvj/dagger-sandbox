@@ -38,5 +38,6 @@ public class Main {
         new KExample07().run();
         new KExample08().run();
         new KExample09().run();
+        new KExample10().run();
     }
 }
