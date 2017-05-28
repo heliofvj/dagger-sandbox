@@ -6,7 +6,7 @@ public abstract class BaseExample implements Runnable {
         System.out.println("\n" + getClass().getSimpleName());
     }
 
-    void printDivider() {
+    protected void printDivider() {
         System.out.println("--");
     }
 
