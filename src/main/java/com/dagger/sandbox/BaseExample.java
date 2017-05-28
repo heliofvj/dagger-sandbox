@@ -46,7 +46,7 @@ public abstract class BaseExample implements Runnable {
         );
     }
 
-    String getHashMessage(Object object) {
+    protected String getHashMessage(Object object) {
         return "hash is " + Integer.toHexString(object.hashCode());
     }
 }
