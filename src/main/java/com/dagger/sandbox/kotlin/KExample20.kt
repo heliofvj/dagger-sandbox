@@ -45,26 +45,21 @@ class KExample20 : BaseExample() {
 
     @Module
     class SimpleModuleA {
-        /**
-         * Well, I couldn't make it work with kotlin for now
-         * Anyway, You can always generate your graph using java as well
-         */
-
+        //gotta specify the type
         @Provides
         @Singleton
         @IntoSet
-        fun provideDependency11() = Dependency11()
+        fun provideDependency11(): Dependency1 = Dependency11()
 
         @Provides
         @IntoSet
-        fun provideDependency12() = Dependency12()
+        fun provideDependency12(): Dependency1 = Dependency12()
     }
 
     @Module
     class SimpleModuleB {
-        /**
-         * Those work just fine. Run the project to see the difference from the java version
-         */
+        //gotta specify the type
+
         @Provides
         @Singleton
         @ElementsIntoSet
