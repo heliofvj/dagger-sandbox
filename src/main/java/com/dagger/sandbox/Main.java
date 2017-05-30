@@ -1,5 +1,7 @@
 package com.dagger.sandbox;
 
+import com.dagger.sandbox.kotlin.*;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -26,5 +28,29 @@ public class Main {
         new Example21().run();
         new Example22().run();
         new Example23().run();
+
+        new KExample01().run();
+        new KExample02().run();
+        new KExample03().run();
+        new KExample04().run();
+        new KExample05().run();
+        new KExample06().run();
+        new KExample07().run();
+        new KExample08().run();
+        new KExample09().run();
+        new KExample10().run();
+        new KExample11().run();
+        new KExample12().run();
+        new KExample13().run();
+        new KExample14().run();
+        new KExample15().run();
+        new KExample16().run();
+        new KExample17().run();
+        new KExample18().run();
+        new KExample19().run();
+        new KExample20().run();
+        new KExample21().run();
+        new KExample22().run();
+        new KExample23().run();
     }
 }

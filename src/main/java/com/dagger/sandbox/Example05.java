@@ -26,6 +26,7 @@ class Example05 extends BaseExample implements Dependency1Interface {
                 .build();
 
         simpleComponent.inject(this);
+
         Dependency1Interface localDependency1Interface = simpleComponent.dependency1Interface();
         Dependency2 localDependency2 = simpleComponent.dependency2();
 
